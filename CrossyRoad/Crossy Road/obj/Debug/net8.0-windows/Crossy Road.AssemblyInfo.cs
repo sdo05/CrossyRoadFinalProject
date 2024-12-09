@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Crossy Road")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5fce492dccd1eabfaa34c18eb43922519652b2b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+890aeb0df1203e6e6388730e9da2c86ad5f393dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("Crossy Road")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Crossy Road")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

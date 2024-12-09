@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tami\\Documents\\GitHub\\CrossyRoad\\Crossy Road\\Crossy Road.csproj": {}
+    "C:\\Users\\Tami\\Downloads\\Found in App Development\\CrossyRoadFinalProject\\CrossyRoad\\Crossy Road\\Crossy Road.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tami\\Documents\\GitHub\\CrossyRoad\\Crossy Road\\Crossy Road.csproj": {
+    "C:\\Users\\Tami\\Downloads\\Found in App Development\\CrossyRoadFinalProject\\CrossyRoad\\Crossy Road\\Crossy Road.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tami\\Documents\\GitHub\\CrossyRoad\\Crossy Road\\Crossy Road.csproj",
+        "projectUniqueName": "C:\\Users\\Tami\\Downloads\\Found in App Development\\CrossyRoadFinalProject\\CrossyRoad\\Crossy Road\\Crossy Road.csproj",
         "projectName": "Crossy Road",
-        "projectPath": "C:\\Users\\Tami\\Documents\\GitHub\\CrossyRoad\\Crossy Road\\Crossy Road.csproj",
+        "projectPath": "C:\\Users\\Tami\\Downloads\\Found in App Development\\CrossyRoadFinalProject\\CrossyRoad\\Crossy Road\\Crossy Road.csproj",
         "packagesPath": "C:\\Users\\Tami\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tami\\Documents\\GitHub\\CrossyRoad\\Crossy Road\\obj\\",
+        "outputPath": "C:\\Users\\Tami\\Downloads\\Found in App Development\\CrossyRoadFinalProject\\CrossyRoad\\Crossy Road\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
