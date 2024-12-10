@@ -1,5 +1,4 @@
-using static System.Formats.Asn1.AsnWriter;
-using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Crossy_Road
 {
@@ -10,17 +9,16 @@ namespace Crossy_Road
         bool slow = false;
         int speed = 12;
         int score = 0;
-        int round = 1;
+        int cross = 1;
 
         int Car1Speed = 5;
         int Car2Speed = 5;
         int Car3Speed = 5;
-
+        int round = 1;
         public Form1()
         {
             InitializeComponent();
         }
-        Random r = new Random();
         private void moveTimerEvent(object sender, EventArgs e)
         {
             Score.Text = "Score " + score;
@@ -40,65 +38,67 @@ namespace Crossy_Road
             {
                 Player.Top += speed;
             }
-            int randomNumber = r.Next(1, 2);
             foreach (Control x in this.Controls)
             {
                 if (x is PictureBox)
                 {
                     if ((string)x.Tag == "Car")
                     {
-                        int hit = 0;
-                        if (Player.Bounds.IntersectsWith(x.Bounds))
+                        if (Player.Bounds.IntersectsWith(x.Bounds) && shield == false)
                         {
-                            if (shield == false)
+                            moveTimer.Stop();
+                            Gameover = true;
+                            Score.Text = "Score: " + score;
+                            Fail.Text = "You Just Got Ran Over!!!\nPress Enter To Play Again\nScore: " + score;
+                            Fail.Visible = true;
+                        }
+                    }
+                    if ((string)x.Tag == "Lane")
+                    {
+                        if (Player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true)
+                        {
+                            x.Visible = false; //Crossing PictureBox in the middle gives 1 point
+                            score = score + 1;
+                            
+                            if (round % 2 == 0) 
                             {
-                                moveTimer.Stop();
-                                Gameover = true;
-                                Score.Text = "Score: " + score;
-                                Fail.Text = "You Just Got Ran Over!!!\nPress Enter To Play Again\nScore: " + score;
-                                Fail.Visible = true;
-                                Fail.BringToFront();
+                                cross++;
                             }
-                            else if (shield == true)
+                            if (cross % 2 == 1)
                             {
-                                if (hit % 2 == 0)
-                                {
-                                    shield = false;
-                                }
+                                shield = false;
                             }
                         }
-                        if ((string)x.Tag == "Lane")
+                    }
+                    if ((string)x.Tag == "PowerUp" && (round % 2 == 0))
+                    {
+                        if (Player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true) // Choose between 2 powerups every 2 rounds
                         {
-                            if (Player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true)
-                            {
+                            if ((string)x.Name == "Shield")
+                            { 
                                 x.Visible = false;
-                                score = score + 1;
-                            }
-                        }
-                        if ((string)x.Tag == "Shield")
-                        {
-                            if (Player.Bounds.IntersectsWith(x.Bounds))
-                            {
-                                Shield.Visible = false;
+                                SlowDown.Visible = false;    //Can cross 1 road without getting hit
                                 shield = true;
                             }
-                        }
-                        if ((string)x.Tag == "SlowDown")
-                        {
-                            if (Player.Bounds.IntersectsWith(x.Bounds) && SlowDown.Visible == true)
+                            if ((string)x.Name == "SlowDown")
                             {
-                                SlowDown.Visible = false;
+                                x.Visible = false;
+                                Shield.Visible = false;    //Slows down cars for 1 round
                                 slow = true;
-                                if (slow == true && SlowDown.Visible == true)
-                                {
-                                    Car1Speed = Car1Speed - 2;
-                                    Car2Speed = Car2Speed - 2;
-                                    Car3Speed = Car3Speed - 2;
-                                }
+
+                                Car1Speed = Car1Speed - 3;
+                                Car2Speed = Car2Speed - 3;
+                                Car3Speed = Car3Speed - 3;
                             }
                         }
                     }
                 }
+            }
+            CarSpeed.Text = "Car Speed: " + Car1Speed.ToString();
+            if (round % 2 != 0)
+            {
+                Shield.Visible = false;
+                SlowDown.Visible = false;
             }
             Car1a.Left += Car1Speed;
             if (Car1a.Left >= 1409)
@@ -154,6 +154,7 @@ namespace Crossy_Road
                 Car3Speed++;
                 Round.Text = "Round " + round;
             }
+
         }
         private void KeyisDown(object sender, KeyEventArgs e)
         {
@@ -192,6 +193,7 @@ namespace Crossy_Road
             {
                 moveDown = false;
             }
+
             if (e.KeyCode == Keys.Enter && Gameover == true)
             {
                 RestartGame();
@@ -199,27 +201,17 @@ namespace Crossy_Road
         }
         private void NewRound()
         {
+
             foreach (Control x in this.Controls)
             {
                 if (x is PictureBox && x.Visible == false)
                 {
                     x.Visible = true;
                 }
-                if (x is PictureBox && Shield.Visible == true)
-                {
-                    Shield.Visible = false;
-                    shield = false;
-                }
-                if (x is PictureBox && SlowDown.Visible == true)
-                {
-                    SlowDown.Visible = false;
-                    slow = false;
-                    Car1Speed = Car1Speed + 2;
-                    Car2Speed = Car2Speed + 2;
-                    Car3Speed = Car3Speed + 2;
-                }
             }
-
+            shield = false;
+            slow = false;
+            cross = 1;
             Player.Left = 705;
             Player.Top = 888;
             Car1a.Left = 12;
@@ -252,6 +244,6 @@ namespace Crossy_Road
 
             NewRound();
             moveTimer.Start();
-        }   
+        }
     }
 }

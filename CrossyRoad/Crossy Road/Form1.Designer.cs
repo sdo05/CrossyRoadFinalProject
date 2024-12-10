@@ -49,8 +49,9 @@
             Lane1 = new PictureBox();
             Lane2 = new PictureBox();
             Lane3 = new PictureBox();
-            Shield = new PictureBox();
             SlowDown = new PictureBox();
+            Shield = new PictureBox();
+            CarSpeed = new Label();
             ((System.ComponentModel.ISupportInitialize)Player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Road1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Car1a).BeginInit();
@@ -67,8 +68,8 @@
             ((System.ComponentModel.ISupportInitialize)Lane1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Lane2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Lane3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Shield).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SlowDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Shield).BeginInit();
             SuspendLayout();
             // 
             // Score
@@ -83,7 +84,7 @@
             // Player
             // 
             Player.BackColor = Color.Blue;
-            Player.Location = new Point(710, 861);
+            Player.Location = new Point(700, 850);
             Player.Name = "Player";
             Player.Size = new Size(150, 117);
             Player.TabIndex = 1;
@@ -226,7 +227,7 @@
             // 
             Fail.BorderStyle = BorderStyle.FixedSingle;
             Fail.Font = new Font("Arial Narrow", 40F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Fail.Location = new Point(321, 152);
+            Fail.Location = new Point(284, 167);
             Fail.Name = "Fail";
             Fail.Size = new Size(976, 554);
             Fail.TabIndex = 15;
@@ -263,33 +264,44 @@
             Lane3.TabStop = false;
             Lane3.Tag = "Lane";
             // 
-            // Shield
-            // 
-            Shield.BackColor = Color.Yellow;
-            Shield.Location = new Point(71, 861);
-            Shield.Name = "Shield";
-            Shield.Size = new Size(91, 75);
-            Shield.TabIndex = 19;
-            Shield.TabStop = false;
-            Shield.Tag = "Shield";
-            // 
             // SlowDown
             // 
             SlowDown.BackColor = Color.Purple;
-            SlowDown.Location = new Point(277, 861);
+            SlowDown.Location = new Point(1000, 873);
             SlowDown.Name = "SlowDown";
-            SlowDown.Size = new Size(91, 75);
-            SlowDown.TabIndex = 20;
+            SlowDown.Size = new Size(78, 75);
+            SlowDown.TabIndex = 19;
             SlowDown.TabStop = false;
-            SlowDown.Tag = "SlowDown";
+            SlowDown.Tag = "PowerUp";
+            // 
+            // Shield
+            // 
+            Shield.BackColor = Color.Yellow;
+            Shield.Location = new Point(400, 873);
+            Shield.Name = "Shield";
+            Shield.Size = new Size(78, 75);
+            Shield.TabIndex = 20;
+            Shield.TabStop = false;
+            Shield.Tag = "PowerUp";
+            // 
+            // CarSpeed
+            // 
+            CarSpeed.Font = new Font("Arial Narrow", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            CarSpeed.Location = new Point(12, 917);
+            CarSpeed.Name = "CarSpeed";
+            CarSpeed.Size = new Size(319, 77);
+            CarSpeed.TabIndex = 21;
+            CarSpeed.Text = "label1";
+            CarSpeed.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1560, 1006);
-            Controls.Add(SlowDown);
+            Controls.Add(CarSpeed);
             Controls.Add(Shield);
+            Controls.Add(SlowDown);
             Controls.Add(Fail);
             Controls.Add(Round);
             Controls.Add(Car2c);
@@ -329,8 +341,8 @@
             ((System.ComponentModel.ISupportInitialize)Lane1).EndInit();
             ((System.ComponentModel.ISupportInitialize)Lane2).EndInit();
             ((System.ComponentModel.ISupportInitialize)Lane3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Shield).EndInit();
             ((System.ComponentModel.ISupportInitialize)SlowDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Shield).EndInit();
             ResumeLayout(false);
         }
 
@@ -356,7 +368,8 @@
         private PictureBox Lane1;
         private PictureBox Lane2;
         private PictureBox Lane3;
-        private PictureBox Shield;
         private PictureBox SlowDown;
+        private PictureBox Shield;
+        private Label CarSpeed;
     }
 }
