@@ -1,3 +1,4 @@
+using System.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Crossy_Road
@@ -9,7 +10,8 @@ namespace Crossy_Road
         bool slow = false;
         int speed = 12;
         int score = 0;
-        int cross = 1;
+        int hit = 0;
+        int cross = 0;
 
         int Car1Speed = 5;
         int Car2Speed = 5;
@@ -44,13 +46,19 @@ namespace Crossy_Road
                 {
                     if ((string)x.Tag == "Car")
                     {
-                        if (Player.Bounds.IntersectsWith(x.Bounds) && shield == false)
+                        if (Player.Bounds.IntersectsWith(x.Bounds))
                         {
-                            moveTimer.Stop();
-                            Gameover = true;
-                            Score.Text = "Score: " + score;
-                            Fail.Text = "You Just Got Ran Over!!!\nPress Enter To Play Again\nScore: " + score;
-                            Fail.Visible = true;
+                            if (shield == false) {
+                                moveTimer.Stop();
+                                Gameover = true;
+                                Score.Text = "Score: " + score;
+                                Fail.Text = "You Just Got Ran Over!!!\nPress Enter To Play Again\nScore: " + score;
+                                Fail.Visible = true;
+                            }
+                            if (shield == true)
+                            {
+                                hit++;
+                            }
                         }
                     }
                     if ((string)x.Tag == "Lane")
@@ -59,12 +67,13 @@ namespace Crossy_Road
                         {
                             x.Visible = false; //Crossing PictureBox in the middle gives 1 point
                             score = score + 1;
-                            
-                            if (round % 2 == 0) 
-                            {
-                                cross++;
-                            }
-                            if (cross % 2 == 1)
+                        }
+                    }
+                    if ((string)x.Tag == "Cross")
+                    {
+                        if (Player.Bounds.IntersectsWith(x.Bounds))
+                        {
+                            if (hit >= 1)
                             {
                                 shield = false;
                             }
@@ -75,9 +84,9 @@ namespace Crossy_Road
                         if (Player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true) // Choose between 2 powerups every 2 rounds
                         {
                             if ((string)x.Name == "Shield")
-                            { 
+                            {
                                 x.Visible = false;
-                                SlowDown.Visible = false;    //Can cross 1 road without getting hit
+                                SlowDown.Visible = false;    //Can survive one lane if hit
                                 shield = true;
                             }
                             if ((string)x.Name == "SlowDown")
@@ -85,6 +94,7 @@ namespace Crossy_Road
                                 x.Visible = false;
                                 Shield.Visible = false;    //Slows down cars for 1 round
                                 slow = true;
+                                cross++;
 
                                 Car1Speed = Car1Speed - 3;
                                 Car2Speed = Car2Speed - 3;
@@ -92,9 +102,27 @@ namespace Crossy_Road
                             }
                         }
                     }
+                    if ((string)x.Tag == "Tree")
+                    {
+                        if (Player.Bounds.IntersectsWith(x.Bounds))
+                        {
+                            if ((string)x.Name == "Tree1")
+                            {
+                                if (x.Left + Player.Width <= 140)
+                                {
+                                    Player.Left = x.Left + Player.Width;
+                                }
+                                if (x.Top - Player.Top <= 130)
+                                {
+                                    Player.Top = x.Top - Player.Height;
+                                }
+                            }
+                        }
+                    }
                 }
             }
             CarSpeed.Text = "Car Speed: " + Car1Speed.ToString();
+
             if (round % 2 != 0)
             {
                 Shield.Visible = false;
@@ -153,6 +181,16 @@ namespace Crossy_Road
                 Car2Speed++;
                 Car3Speed++;
                 Round.Text = "Round " + round;
+                if (round % 2 == 1)
+                {
+                    if (cross == 1)
+                    {
+                        cross = 0;
+                        Car1Speed = Car1Speed + 3;
+                        Car2Speed = Car2Speed + 3;
+                        Car3Speed = Car3Speed + 3;
+                    }
+                }
             }
 
         }
@@ -211,7 +249,7 @@ namespace Crossy_Road
             }
             shield = false;
             slow = false;
-            cross = 1;
+            hit = 0;
             Player.Left = 705;
             Player.Top = 888;
             Car1a.Left = 12;
