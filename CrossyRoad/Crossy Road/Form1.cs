@@ -20,7 +20,7 @@ namespace Crossy_Road
         int Car1Speed = 5;
         int Car2Speed = 5;
         int Car3Speed = 5;
-        int round = 50;
+        int round = 1;
         public Form1()
         {
             InitializeComponent();
