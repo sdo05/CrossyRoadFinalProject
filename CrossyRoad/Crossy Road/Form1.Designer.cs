@@ -215,9 +215,9 @@
             // 
             Round.BackColor = Color.GreenYellow;
             Round.Font = new Font("Arial Narrow", 30F);
-            Round.Location = new Point(593, 9);
+            Round.Location = new Point(426, 9);
             Round.Name = "Round";
-            Round.Size = new Size(377, 77);
+            Round.Size = new Size(737, 77);
             Round.TabIndex = 14;
             Round.Text = "Round: 1";
             Round.TextAlign = ContentAlignment.TopCenter;

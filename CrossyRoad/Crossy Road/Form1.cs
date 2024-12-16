@@ -20,7 +20,7 @@ namespace Crossy_Road
         int Car1Speed = 5;
         int Car2Speed = 5;
         int Car3Speed = 5;
-        int round = 1;
+        int round = 50;
         public Form1()
         {
             InitializeComponent();
@@ -147,7 +147,14 @@ namespace Crossy_Road
             PlayerSpeed.Text = "Player Speed: " + speed.ToString();
             CarSpeed.Text = "Car Speed: " + Car1Speed.ToString();
             Score.Text = "Score: " + score;
-            Round.Text = "Round " + round;
+            if (round <= 50) 
+            {
+                Round.Text = "Round " + round;
+            }
+            if (round > 50)
+            {
+                Round.Text = "SUDDEN DEATH";
+            }
             if (round == 50 && Player.Top==10)
             {
                 Fail.Text = "CONGRATULATIONS!!! You Managed To Not Get Ran Over\nDeaths: " + deaths + "\nDo You Want to Continue";
@@ -236,7 +243,14 @@ namespace Crossy_Road
                         Car2Speed = 70;
                         Car3Speed = 70;
                     }
-                    Round.Text = "Round " + round;
+                    if (round <= 50)
+                    {
+                        Round.Text = "Round " + round;
+                    }
+                    if (round > 50)
+                    {
+                        Round.Text = "SUDDEN DEATH";
+                    }
                     if (round % 5 == 0)
                     {
                         speed += 3;
